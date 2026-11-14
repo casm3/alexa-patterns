@@ -4,7 +4,7 @@ import br.upe.alexapatterns.playback.state.MusicPlayer;
 import java.util.Objects;
 
 /**
- * Requisito #5 - Command: pedido para encerrar a reprodução.
+ * Encapsula o pedido para encerrar a reprodução.
  */
 public class StopCommand implements PlaybackCommand {
 
@@ -19,7 +19,6 @@ public class StopCommand implements PlaybackCommand {
 
   @Override
   public void execute() {
-    throw new UnsupportedOperationException(
-            "Implemente StopCommand.execute");
+    player.stop();
   }
 }

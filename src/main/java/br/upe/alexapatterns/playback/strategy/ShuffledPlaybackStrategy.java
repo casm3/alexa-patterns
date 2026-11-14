@@ -1,12 +1,14 @@
 package br.upe.alexapatterns.playback.strategy;
 
 import br.upe.alexapatterns.track.entity.Track;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
 /**
- * Requisito #1 - Strategy: embaralha as faixas usando o gerador fornecido.
+ * Embaralha uma cópia das faixas usando o gerador recebido.
  */
 public class ShuffledPlaybackStrategy implements PlaybackOrderStrategy {
 
@@ -21,7 +23,8 @@ public class ShuffledPlaybackStrategy implements PlaybackOrderStrategy {
 
   @Override
   public List<Track> order(List<Track> tracks) {
-    throw new UnsupportedOperationException(
-            "Implemente ShuffledPlaybackStrategy.order");
+    List<Track> result = new ArrayList<>(tracks);
+    Collections.shuffle(result, random);
+    return result;
   }
 }

@@ -5,7 +5,7 @@ import br.upe.alexapatterns.track.entity.Track;
 import java.util.List;
 
 /**
- * Requisito #4 - State: comportamento do tocador pausado.
+ * Representa uma reprodução pausada.
  */
 public class PausedState implements PlaybackState {
 
@@ -16,25 +16,26 @@ public class PausedState implements PlaybackState {
 
   @Override
   public void play(MusicPlayer player, List<Track> tracks) {
-    throw new UnsupportedOperationException(
-            "Implemente PausedState.play");
+    player.beginPlaylist(tracks);
+    player.changeState(new PlayingState());
   }
 
   @Override
   public void resume(MusicPlayer player) {
-    throw new UnsupportedOperationException(
-            "Implemente PausedState.resume");
+    player.changeState(new PlayingState());
   }
 
   @Override
   public void next(MusicPlayer player) {
-    throw new UnsupportedOperationException(
-            "Implemente PausedState.next");
+    if (!player.advance()) {
+      player.clearPlaylist();
+      player.changeState(new StoppedState());
+    }
   }
 
   @Override
   public void stop(MusicPlayer player) {
-    throw new UnsupportedOperationException(
-            "Implemente PausedState.stop");
+    player.clearPlaylist();
+    player.changeState(new StoppedState());
   }
 }

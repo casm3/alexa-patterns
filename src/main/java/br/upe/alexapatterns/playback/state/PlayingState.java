@@ -5,7 +5,7 @@ import br.upe.alexapatterns.track.entity.Track;
 import java.util.List;
 
 /**
- * Requisito #4 - State: comportamento durante a reprodução.
+ * Representa uma reprodução em andamento.
  */
 public class PlayingState implements PlaybackState {
 
@@ -16,25 +16,26 @@ public class PlayingState implements PlaybackState {
 
   @Override
   public void play(MusicPlayer player, List<Track> tracks) {
-    throw new UnsupportedOperationException(
-            "Implemente PlayingState.play");
+    player.beginPlaylist(tracks);
+    player.changeState(new PlayingState());
   }
 
   @Override
   public void pause(MusicPlayer player) {
-    throw new UnsupportedOperationException(
-            "Implemente PlayingState.pause");
+    player.changeState(new PausedState());
   }
 
   @Override
   public void next(MusicPlayer player) {
-    throw new UnsupportedOperationException(
-            "Implemente PlayingState.next");
+    if (!player.advance()) {
+      player.clearPlaylist();
+      player.changeState(new StoppedState());
+    }
   }
 
   @Override
   public void stop(MusicPlayer player) {
-    throw new UnsupportedOperationException(
-            "Implemente PlayingState.stop");
+    player.clearPlaylist();
+    player.changeState(new StoppedState());
   }
 }

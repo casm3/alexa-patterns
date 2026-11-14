@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Requisito #5 - Command: pedido para iniciar uma sequência de músicas.
+ * Encapsula o pedido para iniciar uma sequência de músicas.
  */
 public class PlayCommand implements PlaybackCommand {
 
@@ -23,7 +23,6 @@ public class PlayCommand implements PlaybackCommand {
 
   @Override
   public void execute() {
-    throw new UnsupportedOperationException(
-            "Implemente PlayCommand.execute");
+    player.play(tracks);
   }
 }

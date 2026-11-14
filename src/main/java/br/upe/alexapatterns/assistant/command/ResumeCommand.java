@@ -4,7 +4,7 @@ import br.upe.alexapatterns.playback.state.MusicPlayer;
 import java.util.Objects;
 
 /**
- * Requisito #5 - Command: pedido para continuar a reprodução.
+ * Encapsula o pedido para continuar a reprodução.
  */
 public class ResumeCommand implements PlaybackCommand {
 
@@ -19,7 +19,6 @@ public class ResumeCommand implements PlaybackCommand {
 
   @Override
   public void execute() {
-    throw new UnsupportedOperationException(
-            "Implemente ResumeCommand.execute");
+    player.resume();
   }
 }

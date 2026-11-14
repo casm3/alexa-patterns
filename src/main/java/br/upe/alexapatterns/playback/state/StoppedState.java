@@ -5,7 +5,7 @@ import br.upe.alexapatterns.track.entity.Track;
 import java.util.List;
 
 /**
- * Requisito #4 - State: comportamento do tocador parado.
+ * Representa o tocador sem uma reprodução em andamento.
  */
 public class StoppedState implements PlaybackState {
 
@@ -16,13 +16,12 @@ public class StoppedState implements PlaybackState {
 
   @Override
   public void play(MusicPlayer player, List<Track> tracks) {
-    throw new UnsupportedOperationException(
-            "Implemente StoppedState.play");
+    player.beginPlaylist(tracks);
+    player.changeState(new PlayingState());
   }
 
   @Override
   public void stop(MusicPlayer player) {
-    throw new UnsupportedOperationException(
-            "Implemente StoppedState.stop");
+    // O tocador já está parado.
   }
 }

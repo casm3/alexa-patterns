@@ -1,52 +1,57 @@
 package br.upe.alexapatterns.assistant.command;
 
 import java.util.ArrayDeque;
+import java.util.Objects;
 import java.util.Queue;
 
 /**
- * Requisito #5 - Command: armazena pedidos para execução posterior em ordem de inclusão.
+ * Armazena e executa os comandos na ordem de inclusão.
  */
 public class CommandQueue {
 
   private final Queue<PlaybackCommand> commands = new ArrayDeque<>();
 
   /**
-   * Registra um comando não nulo, sem executá-lo.
+   * Registra um pedido para execução posterior.
    */
   public void enqueue(PlaybackCommand command) {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.enqueue");
+    commands.add(Objects.requireNonNull(command, "command"));
   }
 
   /**
-   * Remove e executa o próximo comando; devolve false se a fila estiver vazia.
+   * Remove e executa um pedido, se existir.
    */
   public boolean executeNext() {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.executeNext");
+    PlaybackCommand command = commands.poll();
+    if (command == null) {
+      return false;
+    }
+    command.execute();
+    return true;
   }
 
   /**
-   * Executa os pedidos em ordem e devolve a quantidade concluída, ou propaga o erro.
+   * Executa os pedidos até esvaziar a fila ou ocorrer um erro.
    */
   public int executeAll() {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.executeAll");
+    int count = 0;
+    while (executeNext()) {
+      count++;
+    }
+    return count;
   }
 
   /**
-   * Informa quantos comandos ainda estão pendentes.
+   * Conta os pedidos pendentes.
    */
   public int size() {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.size");
+    return commands.size();
   }
 
   /**
-   * Descarta os comandos pendentes, sem alterar o tocador.
+   * Descarta as pendências.
    */
   public void clear() {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.clear");
+    commands.clear();
   }
 }
