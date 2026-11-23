@@ -1,24 +1,26 @@
 package br.upe.alexapatterns.playback.observer;
 
 import br.upe.alexapatterns.playback.event.PlaybackEvent;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Requisito #3 Observer: registra os eventos recebidos em ordem.
  */
 public class PlaybackHistory implements PlaybackObserver {
 
+  private final List<PlaybackEvent> events = new ArrayList<>();
+
   @Override
   public void update(PlaybackEvent event) {
-    throw new UnsupportedOperationException(
-            "Implemente PlaybackHistory.update");
+    events.add(Objects.requireNonNull(event, "event"));
   }
 
   /**
    * Devolve uma cópia não modificável dos eventos recebidos.
    */
   public List<PlaybackEvent> getEvents() {
-    throw new UnsupportedOperationException(
-            "Implemente PlaybackHistory.getEvents");
+    return List.copyOf(events);
   }
 }
