@@ -4,7 +4,7 @@ import br.upe.alexapatterns.playback.state.MusicPlayer;
 import java.util.Objects;
 
 /**
- * Requisito #5 -  Command: pedido para avançar para a próxima música.
+ * Requisito #5 - Command: pedido para avançar para a próxima música.
  */
 public class NextCommand implements PlaybackCommand {
 
@@ -19,7 +19,6 @@ public class NextCommand implements PlaybackCommand {
 
   @Override
   public void execute() {
-    throw new UnsupportedOperationException(
-            "Implemente NextCommand.execute");
+    player.next();
   }
 }
