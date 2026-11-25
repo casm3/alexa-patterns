@@ -3,29 +3,39 @@ package br.upe.alexapatterns.playlist.iterator;
 import br.upe.alexapatterns.track.entity.Track;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Requisito #2 - Iterator: controla um percurso independente pelas faixas.
  */
 public class PlaylistIterator implements Iterator<Track> {
 
+  private final List<Track> tracks;
+  private int position;
+
   /**
    * Inicia o percurso sobre uma cópia da sequência recebida.
    */
   public PlaylistIterator(List<Track> tracks) {
-    throw new UnsupportedOperationException(
-            "Requisito #2 - Iterator: implemente o construtor de PlaylistIterator");
+    this.tracks = List.copyOf(tracks);
+    this.position = 0;
   }
 
   @Override
   public boolean hasNext() {
-    throw new UnsupportedOperationException(
-            "Requisito #2 - Iterator: implemente PlaylistIterator.hasNext");
+    return position < tracks.size();
   }
 
   @Override
   public Track next() {
-    throw new UnsupportedOperationException(
-            "Requisito #2 - Iterator: implemente PlaylistIterator.next");
+    if (!hasNext()) {
+      throw new NoSuchElementException("Não há mais faixas na sequência");
+    }
+    return tracks.get(position++);
+  }
+
+  @Override
+  public void remove() {
+    throw new UnsupportedOperationException("Remoção não permitida no percurso da playlist");
   }
 }
