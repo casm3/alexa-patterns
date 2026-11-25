@@ -14,39 +14,47 @@ public class CommandQueue {
    * Registra um comando não nulo, sem executá-lo.
    */
   public void enqueue(PlaybackCommand command) {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.enqueue");
+    commands.add(command);
   }
 
   /**
    * Remove e executa o próximo comando; devolve false se a fila estiver vazia.
    */
   public boolean executeNext() {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.executeNext");
+    PlaybackCommand command = commands.poll();
+
+    if (command == null) {
+      return false;
+    }
+
+    command.execute();
+    return true;
   }
 
   /**
    * Executa os pedidos em ordem e devolve a quantidade concluída, ou propaga o erro.
    */
   public int executeAll() {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.executeAll");
+    int executed = 0;
+
+    while (executeNext()) {
+      executed++;
+    }
+
+    return executed;
   }
 
   /**
    * Informa quantos comandos ainda estão pendentes.
    */
   public int size() {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.size");
+    return commands.size();
   }
 
   /**
    * Descarta os comandos pendentes, sem alterar o tocador.
    */
   public void clear() {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.clear");
+    commands.clear();
   }
 }
