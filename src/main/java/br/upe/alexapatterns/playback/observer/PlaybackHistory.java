@@ -1,6 +1,7 @@
 package br.upe.alexapatterns.playback.observer;
 
 import br.upe.alexapatterns.playback.event.PlaybackEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,17 +9,17 @@ import java.util.List;
  */
 public class PlaybackHistory implements PlaybackObserver {
 
+  private final List<PlaybackEvent> events = new ArrayList<>();
+
   @Override
   public void update(PlaybackEvent event) {
-    throw new UnsupportedOperationException(
-            "Implemente PlaybackHistory.update");
+    events.add(event);
   }
 
   /**
    * Devolve uma cópia não modificável dos eventos recebidos.
    */
   public List<PlaybackEvent> getEvents() {
-    throw new UnsupportedOperationException(
-            "Implemente PlaybackHistory.getEvents");
+    return List.copyOf(events);
   }
 }
