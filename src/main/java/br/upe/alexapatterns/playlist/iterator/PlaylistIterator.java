@@ -9,13 +9,12 @@ import java.util.NoSuchElementException;
  * Requisito #2 - Iterator: controla um percurso independente pelas faixas.
  */
 public class PlaylistIterator implements Iterator<Track> {
+  private final List<Track> tracks;
+  private int position;
 
   /**
    * Inicia o percurso sobre uma cópia da sequência recebida.
    */
-  private final List<Track> tracks;
-  private int position;
-
   public PlaylistIterator(List<Track> tracks) {
     this.tracks = List.copyOf(tracks);
   }
