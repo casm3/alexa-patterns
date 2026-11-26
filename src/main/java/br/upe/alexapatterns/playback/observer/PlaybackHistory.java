@@ -16,6 +16,9 @@ public class PlaybackHistory implements PlaybackObserver {
     events.add(event);
   }
 
+  /**
+   * Devolve uma cópia não modificável dos eventos recebidos.
+   */
   public List<PlaybackEvent> getEvents() {
     return List.copyOf(events);
   }

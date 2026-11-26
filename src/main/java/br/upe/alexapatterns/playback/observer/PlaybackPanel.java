@@ -14,7 +14,10 @@ public class PlaybackPanel implements PlaybackObserver {
   public void update(PlaybackEvent event) {
     this.latest = event;
   }
- 
+  
+  /**
+   * Consulta a última atualização ou devolve Optional.empty antes do primeiro evento.
+   */
   public Optional<PlaybackEvent> getLatest() {
     return Optional.ofNullable(latest);
   }
