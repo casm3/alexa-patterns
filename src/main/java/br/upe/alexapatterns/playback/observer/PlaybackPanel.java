@@ -1,6 +1,7 @@
 package br.upe.alexapatterns.playback.observer;
 
 import br.upe.alexapatterns.playback.event.PlaybackEvent;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -8,17 +9,17 @@ import java.util.Optional;
  */
 public class PlaybackPanel implements PlaybackObserver {
 
+  private PlaybackEvent latest;
+
   @Override
   public void update(PlaybackEvent event) {
-    throw new UnsupportedOperationException(
-            "Implemente PlaybackPanel.update");
+    this.latest = Objects.requireNonNull(event, "event");
   }
 
   /**
    * Consulta a última atualização ou devolve Optional.empty antes do primeiro evento.
    */
   public Optional<PlaybackEvent> getLatest() {
-    throw new UnsupportedOperationException(
-            "Implemente PlaybackPanel.getLatest");
+    return Optional.ofNullable(this.latest);
   }
 }
