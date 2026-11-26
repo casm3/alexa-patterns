@@ -19,7 +19,6 @@ public class NextCommand implements PlaybackCommand {
 
   @Override
   public void execute() {
-    throw new UnsupportedOperationException(
-            "Implemente NextCommand.execute");
+    this.player.next();
   }
 }
