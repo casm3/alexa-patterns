@@ -19,7 +19,5 @@ public class PauseCommand implements PlaybackCommand {
 
   @Override
   public void execute() {
-    throw new UnsupportedOperationException(
-            "Implemente PauseCommand.execute");
-  }
+    player.pause();
 }

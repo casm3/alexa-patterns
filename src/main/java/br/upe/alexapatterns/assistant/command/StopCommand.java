@@ -19,7 +19,5 @@ public class StopCommand implements PlaybackCommand {
 
   @Override
   public void execute() {
-    throw new UnsupportedOperationException(
-            "Implemente StopCommand.execute");
-  }
+    player.stop();
 }
