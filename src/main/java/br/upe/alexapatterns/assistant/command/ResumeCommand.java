@@ -19,7 +19,6 @@ public class ResumeCommand implements PlaybackCommand {
 
   @Override
   public void execute() {
-    throw new UnsupportedOperationException(
-            "Implemente ResumeCommand.execute");
+    player.resume();
   }
 }
