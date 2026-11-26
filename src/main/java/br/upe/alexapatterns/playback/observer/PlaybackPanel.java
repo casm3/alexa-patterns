@@ -4,21 +4,21 @@ import br.upe.alexapatterns.playback.event.PlaybackEvent;
 import java.util.Optional;
 
 /**
- * Requisito #3 - Observer: mantém a última atualização do painel.
+ * Requisito #5 - Observer: mantém o último estado publicado da reprodução.
  */
 public class PlaybackPanel implements PlaybackObserver {
 
+  private PlaybackEvent latest;
+
   @Override
   public void update(PlaybackEvent event) {
-    throw new UnsupportedOperationException(
-            "Implemente PlaybackPanel.update");
+    this.latest = event;
   }
 
   /**
    * Consulta a última atualização ou devolve Optional.empty antes do primeiro evento.
    */
   public Optional<PlaybackEvent> getLatest() {
-    throw new UnsupportedOperationException(
-            "Implemente PlaybackPanel.getLatest");
+    return Optional.ofNullable(latest);
   }
 }

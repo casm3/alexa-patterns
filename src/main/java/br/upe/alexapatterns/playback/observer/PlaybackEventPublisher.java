@@ -1,27 +1,34 @@
 package br.upe.alexapatterns.playback.observer;
 
 import br.upe.alexapatterns.playback.event.PlaybackEvent;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
- * Requisito #3 - Observer: gerencia inscrições e publica eventos.
+ * Requisito #5 - Observer: mantém assinantes e publica eventos de reprodução.
  */
 public class PlaybackEventPublisher implements PlaybackPublisher {
 
+  private final List<PlaybackObserver> observers = new ArrayList<>();
+
   @Override
   public void subscribe(PlaybackObserver observer) {
-    throw new UnsupportedOperationException(
-            "Implemente PlaybackEventPublisher.subscribe");
+    Objects.requireNonNull(observer, "observer");
+    if (!observers.contains(observer)) {
+      observers.add(observer);
+    }
   }
 
   @Override
   public void unsubscribe(PlaybackObserver observer) {
-    throw new UnsupportedOperationException(
-            "Implemente PlaybackEventPublisher.unsubscribe");
+    observers.remove(observer);
   }
 
   @Override
   public void publish(PlaybackEvent event) {
-    throw new UnsupportedOperationException(
-            "Implemente PlaybackEventPublisher.publish");
+    for (PlaybackObserver observer : new ArrayList<>(observers)) {
+      observer.update(event);
+    }
   }
 }
