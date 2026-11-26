@@ -23,7 +23,6 @@ public class PlayCommand implements PlaybackCommand {
 
   @Override
   public void execute() {
-    throw new UnsupportedOperationException(
-            "Implemente PlayCommand.execute");
+    this.player.play(this.tracks);
   }
 }

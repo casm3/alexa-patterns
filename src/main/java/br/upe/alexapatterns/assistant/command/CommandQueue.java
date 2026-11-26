@@ -1,6 +1,7 @@
 package br.upe.alexapatterns.assistant.command;
 
 import java.util.ArrayDeque;
+import java.util.Objects;
 import java.util.Queue;
 
 /**
@@ -14,39 +15,43 @@ public class CommandQueue {
    * Registra um comando não nulo, sem executá-lo.
    */
   public void enqueue(PlaybackCommand command) {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.enqueue");
+    this.commands.add(Objects.requireNonNull(command, "command"));
   }
 
   /**
    * Remove e executa o próximo comando; devolve false se a fila estiver vazia.
    */
   public boolean executeNext() {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.executeNext");
+    PlaybackCommand next = this.commands.poll();
+    if (next == null) {
+      return false;
+    }
+    next.execute();
+    return true;
   }
 
   /**
    * Executa os pedidos em ordem e devolve a quantidade concluída, ou propaga o erro.
    */
   public int executeAll() {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.executeAll");
+    int executed = 0;
+    while (executeNext()) {
+      executed++;
+    }
+    return executed;
   }
 
   /**
    * Informa quantos comandos ainda estão pendentes.
    */
   public int size() {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.size");
+    return this.commands.size();
   }
 
   /**
    * Descarta os comandos pendentes, sem alterar o tocador.
    */
   public void clear() {
-    throw new UnsupportedOperationException(
-            "Implemente CommandQueue.clear");
+    this.commands.clear();
   }
 }

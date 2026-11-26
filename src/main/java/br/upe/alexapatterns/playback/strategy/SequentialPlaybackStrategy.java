@@ -10,7 +10,6 @@ public class SequentialPlaybackStrategy implements PlaybackOrderStrategy {
 
   @Override
   public List<Track> order(List<Track> tracks) {
-    throw new UnsupportedOperationException(
-            "Implemente SequentialPlaybackStrategy.order");
+    return List.copyOf(tracks);
   }
 }
