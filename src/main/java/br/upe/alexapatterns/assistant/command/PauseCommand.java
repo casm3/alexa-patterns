@@ -20,4 +20,5 @@ public class PauseCommand implements PlaybackCommand {
   @Override
   public void execute() {
     player.pause();
+  }
 }

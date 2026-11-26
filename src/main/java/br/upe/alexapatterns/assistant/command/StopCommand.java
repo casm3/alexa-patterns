@@ -20,4 +20,5 @@ public class StopCommand implements PlaybackCommand {
   @Override
   public void execute() {
     player.stop();
+  }
 }
